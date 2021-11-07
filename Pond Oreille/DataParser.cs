@@ -24,13 +24,13 @@ namespace Pond_Oreille
                 splitData.Add(tsplitData[i].Split('\t'));
             }
             //splitData.Count
-            for (int i = 1; i < 4 ; i++)
+            for (int i = 2; i < splitData.Count-3 ; i++)
             {
                 WeatherData wd = new WeatherData();
-                string tempDate = splitData[i][0] + splitData[i][1].Substring(4);
-                DateTime date = DateTime.ParseExact(tempDate, "yyyy_MM_dd HH:mm:ss", us);
+                string test = splitData[i][0];
+                DateTime date = DateTime.ParseExact(test, "yyyy_MM_dd HH:mm:ss", us);
                 wd.date = date;
-                wd.airTemp = float.Parse(splitData[i][1].Substring(0,4));
+                wd.airTemp = float.Parse(splitData[i][1]);
                 wd.barometricPress = float.Parse(splitData[i][2]);
                 wd.dewPoint = float.Parse(splitData[i][3]);
                 wd.RelativeHumidity = float.Parse(splitData[i][4]);
@@ -41,6 +41,14 @@ namespace Pond_Oreille
             }
         }
 
-        
+        public List<WeatherData> findByDate(DateTime time)
+        {
+            return data.FindAll(d => time.Date == d.date.Date);
+        }
+
+        public List<WeatherData> findBetweenDate(DateTime d1, DateTime d2)
+        {
+            return data.FindAll(d => d1.Date <= d.date.Date && d2.Date >= d.date.Date);
+        }
     }
 }

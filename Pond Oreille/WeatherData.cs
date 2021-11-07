@@ -20,5 +20,18 @@ namespace Pond_Oreille
         {
 
         }
+        public override string ToString()
+        {
+            StringBuilder sb= new StringBuilder(); 
+            sb.AppendLine("Date: " + date.ToString());
+            sb.AppendLine("Air Temp: " + airTemp.ToString());
+            sb.AppendLine("Barometric Pressure: " + barometricPress.ToString());
+            sb.AppendLine("Dew Point: " + dewPoint.ToString());
+            sb.AppendLine("RelativeHumidity: " + RelativeHumidity.ToString());
+            sb.AppendLine("Wind Direction: " + windDirection.ToString());
+            sb.AppendLine("Wind Gust: " + windGust.ToString());
+            sb.AppendLine("Wind Speed: " + windSpeed.ToString());
+            return sb.ToString();
+        }
     }
 }
